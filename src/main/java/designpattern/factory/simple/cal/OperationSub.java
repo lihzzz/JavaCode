@@ -1,4 +1,4 @@
-package designpattern.factory.simple;
+package designpattern.factory.simple.cal;
 
 /**
  * @author liuhuan <liuhuan07@kuaishou.com>

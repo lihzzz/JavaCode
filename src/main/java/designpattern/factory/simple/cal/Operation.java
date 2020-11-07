@@ -1,4 +1,4 @@
-package designpattern.factory.simple;
+package designpattern.factory.simple.cal;
 
 public class Operation {
     public double _numberA = 0;
