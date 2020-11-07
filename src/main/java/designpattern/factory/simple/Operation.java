@@ -1,6 +1,6 @@
 package designpattern.factory.simple;
 
-public abstract class Operation {
+public class Operation {
     public double _numberA = 0;
 
     public double get_numberA() {
@@ -21,6 +21,10 @@ public abstract class Operation {
 
     public double _numberB = 0;
 
-    public abstract double GetResult();
+
+
+    public double GetResult(){
+        return 0;
+    };
 
 }
