@@ -6,6 +6,8 @@ import designpattern.factory.simple.cal.Operation;
 import designpattern.factory.simple.cal.OperationFactory;
 import designpattern.factory.simple.cash.CashSuper;
 import designpattern.factory.simple.cash.FactoryCash;
+import designpattern.proxy.GiftProxy;
+import designpattern.proxy.SchoolGirl;
 
 /**
  * @author liuhuan <liuhuan07@kuaishou.com>
@@ -20,13 +22,18 @@ public class test {
 //        CashSuper cashSuper = FactoryCash.cashFactory("满300返100");
 //        System.out.println(cashSuper.takeMoney(700));
 
-        DecoratorA decoratorA = new DecoratorA();
-        DecoratorB decoratorB = new DecoratorB();
-        DecoratorC decoratorC = new DecoratorC();
+//        DecoratorA decoratorA = new DecoratorA();
+//        DecoratorB decoratorB = new DecoratorB();
+//        DecoratorC decoratorC = new DecoratorC();
+//
+//        decoratorB.SetComponent(decoratorA);
+//        decoratorC.SetComponent(decoratorB);
+//        decoratorC.Operation();
 
-        decoratorB.SetComponent(decoratorA);
-        decoratorC.SetComponent(decoratorB);
-        decoratorC.Operation();
+        GiftProxy giftProxy = new GiftProxy(new SchoolGirl("lalala"));
+        giftProxy.giveGiftOne();
+        giftProxy.giveGiftTwo();
+        giftProxy.giveGiftThree();
 
     }
 }
