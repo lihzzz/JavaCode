@@ -6,8 +6,6 @@ package designpattern.factory.simple.cal;
  */
 public class OperationAdd extends Operation{
 
-
-
     @Override
     public double GetResult() {
         return this._numberA + this._numberB;
