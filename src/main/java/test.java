@@ -1,13 +1,5 @@
-import designpattern.decorator.Decorator;
-import designpattern.decorator.DecoratorA;
-import designpattern.decorator.DecoratorB;
-import designpattern.decorator.DecoratorC;
-import designpattern.factory.simple.cal.Operation;
-import designpattern.factory.simple.cal.OperationFactory;
-import designpattern.factory.simple.cash.CashSuper;
-import designpattern.factory.simple.cash.FactoryCash;
-import designpattern.proxy.GiftProxy;
-import designpattern.proxy.SchoolGirl;
+import DesignPattern.Creator.builder.Car;
+import DesignPattern.Creator.builder.CarBuilder;
 
 /**
  * @author liuhuan <liuhuan07@kuaishou.com>
@@ -30,10 +22,13 @@ public class test {
 //        decoratorC.SetComponent(decoratorB);
 //        decoratorC.Operation();
 
-        GiftProxy giftProxy = new GiftProxy(new SchoolGirl("lalala"));
-        giftProxy.giveGiftOne();
-        giftProxy.giveGiftTwo();
-        giftProxy.giveGiftThree();
+//        GiftProxy giftProxy = new GiftProxy(new SchoolGirl("lalala"));
+//        giftProxy.giveGiftOne();
+//        giftProxy.giveGiftTwo();
+//        giftProxy.giveGiftThree();
 
+        // 建造者模式
+        Car car = new CarBuilder().type("小").comfort("一般舒适").power("动力强劲").build();
+        System.out.println(car.toString());
     }
 }
