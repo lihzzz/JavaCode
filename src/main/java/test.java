@@ -1,8 +1,8 @@
-import DesignPattern.Creator.builder.Car;
-import DesignPattern.Creator.builder.CarBuilder;
+import designpattern.creatormode.builder.Car;
+import designpattern.creatormode.builder.CarBuilder;
 
 /**
- * @author liuhuan <liuhuan07@kuaishou.com>
+ * @author lh
  * Created on 2020/11/7
  */
 public class test {
