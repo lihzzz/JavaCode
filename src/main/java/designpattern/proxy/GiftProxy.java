@@ -1,5 +1,6 @@
 package designpattern.proxy;
 
+
 /**
  * @author lh
  * Created on 2020/11/10
@@ -13,7 +14,7 @@ public class GiftProxy extends GiveGift{
 
     @Override
     public void giveGiftOne() {
-        this.pursuit.giveGiftOne();;
+        this.pursuit.giveGiftOne();
     }
 
     @Override
