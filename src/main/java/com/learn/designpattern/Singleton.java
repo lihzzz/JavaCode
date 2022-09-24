@@ -26,6 +26,7 @@ public class Singleton {
 
     /**
      * 枚举单例
+     *
      */
     private enum EnumSingleton {
         INSTANCE;
