@@ -7,23 +7,62 @@ package com.learn.designpattern;
  */
 public class Singleton {
 
-    public static volatile Singleton singleton;
+    /**
+     * 懒汉式 -- 锁导致并发度降低
+     */
+    public static volatile Singleton lazySingleton;
 
-    private Singleton(){};
+    /**
+     * 饿汉式 -- 提前创建好实例，占用资源，无法延迟加载
+     */
+    public static final Singleton hungrySingleton = new Singleton();
+
+    /**
+     * 静态内部类 -- jvm保证线程安全
+     */
+    private static class SingletonHolder {
+        private static final Singleton instance = new Singleton();
+    }
+
+    /**
+     * 枚举单例
+     */
+    private enum EnumSingleton {
+        INSTANCE;
+        private final Singleton singleton;
+
+        EnumSingleton() {
+            singleton = new Singleton();
+        }
+
+        private Singleton getInstance() {
+            return singleton;
+        }
+    }
+
+    /**
+     * 构造private，防止外部通过new创建实例
+     */
+    private Singleton() {
+    }
+
+    ;
 
     /**
      * 懒汉单例
+     *
      * @return
      */
     public static Singleton getSingleton() {
-        if(singleton == null){
-            synchronized (Singleton.class){
-                if(singleton == null){
-                    singleton = new Singleton();
+        if (lazySingleton == null) {
+            // 懒汉初始化加锁操作，解决并发问题
+            synchronized (Singleton.class) {
+                if (lazySingleton == null) {
+                    lazySingleton = new Singleton();
                 }
             }
         }
-        return singleton;
+        return lazySingleton;
     }
 
     public static void main(String[] args) {
