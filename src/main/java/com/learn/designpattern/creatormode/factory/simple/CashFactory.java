@@ -1,10 +1,15 @@
-package com.learn.designpattern.creatormode.factory.simple.cash;
+package com.learn.designpattern.creatormode.factory.simple;
+
+import com.learn.designpattern.creatormode.factory.simple.cash.CashNormal;
+import com.learn.designpattern.creatormode.factory.simple.cash.CashRebate;
+import com.learn.designpattern.creatormode.factory.simple.cash.CashReturn;
+import com.learn.designpattern.creatormode.factory.simple.cash.CashSuper;
 
 /**
  * @author lh
  * 将不同的变化封装到不同的类中，然后用统一的工厂类创建相应变化的类
  */
-public class FactoryCash {
+public class CashFactory {
     public static CashSuper cashFactory(String type){
         switch (type){
             case "满300返100":
