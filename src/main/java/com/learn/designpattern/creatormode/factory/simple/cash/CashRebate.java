@@ -1,6 +1,6 @@
 package com.learn.designpattern.creatormode.factory.simple.cash;
 
-public class CashRebate extends CashSuper {
+public class CashRebate extends Cash {
     public double rebate;
 
     public CashRebate(double rebate){

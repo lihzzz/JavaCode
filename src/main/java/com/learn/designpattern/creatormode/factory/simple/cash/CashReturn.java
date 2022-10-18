@@ -1,6 +1,6 @@
 package com.learn.designpattern.creatormode.factory.simple.cash;
 
-public class CashReturn extends CashSuper{
+public class CashReturn extends Cash{
 
     public int condition;
     public int returnMoney;
