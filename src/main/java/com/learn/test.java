@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Stack;
 
 /**
  * @author lh
@@ -43,11 +44,6 @@ public class test {
 //        System.out.println(a.hashCode());
 //        System.out.println(b.hashCode());
 //        System.out.println(a == 1);
-
-    }
-
-    @Test
-    public void listRemove(){
 
     }
 

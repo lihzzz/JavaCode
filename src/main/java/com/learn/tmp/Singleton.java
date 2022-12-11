@@ -1,9 +1,12 @@
 package com.learn.tmp;
 
+/**
+ * 单例实现
+ */
 public class Singleton {
     public static volatile Singleton singleton;
 
-    public Singleton(){
+    private Singleton(){
 
     }
 
