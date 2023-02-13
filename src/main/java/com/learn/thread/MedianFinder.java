@@ -1,6 +1,5 @@
-package com.learn.Thread;
+package com.learn.thread;
 
-import java.util.Comparator;
 import java.util.PriorityQueue;
 
 class MedianFinder {

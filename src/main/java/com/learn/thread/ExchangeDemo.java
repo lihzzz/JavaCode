@@ -1,7 +1,6 @@
-package com.learn.Thread;
+package com.learn.thread;
 
 import java.util.*;
-import java.util.concurrent.Delayed;
 import java.util.concurrent.Exchanger;
 
 public class ExchangeDemo {

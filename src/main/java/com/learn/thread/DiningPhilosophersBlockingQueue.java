@@ -1,4 +1,4 @@
-package com.learn.Thread;
+package com.learn.thread;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

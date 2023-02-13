@@ -1,4 +1,4 @@
-package com.learn.Thread;
+package com.learn.thread;
 
 public class Visibility {
     public static int a = 0,b = 0;

@@ -1,4 +1,4 @@
-package com.learn.Thread;
+package com.learn.thread;
 
 import java.util.LinkedList;
 import java.util.Queue;
