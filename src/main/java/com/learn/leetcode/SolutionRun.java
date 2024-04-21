@@ -5,7 +5,7 @@ import org.junit.Test;
 public class SolutionRun {
 
     @Test
-    public void maxProfitTest(){
+    public void maxProfitTest() {
 
     }
 }

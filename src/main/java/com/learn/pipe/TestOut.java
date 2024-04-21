@@ -6,17 +6,15 @@ import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestOut implements Runnable{
+public class TestOut implements Runnable {
 
-    private Process p ;
-    private byte[] b ;
+    private Process p;
+    private byte[] b;
 
     public TestOut(Process p, byte[] b) {
         this.p = p;
         this.b = b;
     }
-
-
 
 
     @Override

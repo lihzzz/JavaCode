@@ -6,7 +6,9 @@ package com.learn.designpattern.proxy;
  */
 public abstract class GiveGift {
     public abstract void giveGiftOne();
+
     public abstract void giveGiftTwo();
+
     public abstract void giveGiftThree();
 
 }

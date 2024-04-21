@@ -13,6 +13,6 @@ public class ObserveTest {
 
         LotteryService lotteryService = new LotteryServiceImpl();
         LotteryResult lotteryResult = lotteryService.doDraw("111123");
-        log.info("{}",lotteryResult.toString());
+        log.info("{}", lotteryResult.toString());
     }
 }

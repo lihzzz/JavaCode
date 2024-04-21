@@ -2,6 +2,7 @@ package com.learn.designpattern.creatormode.factory.di.parse;
 
 /**
  * 构造参数类型
+ *
  * @author lihzz
  * @version 1.0
  * @date 2022/9/26 23:40

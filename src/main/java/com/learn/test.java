@@ -48,12 +48,12 @@ public class test {
     }
 
     public int[] sortArray(int[] number) {
-        if(number.length == 0){
+        if (number.length == 0) {
             return new int[]{};
         }
         List<Integer> list = new ArrayList<>();
-        for(int i = 0;i<number.length;i++){
-            if(!list.contains(number[i])){
+        for (int i = 0; i < number.length; i++) {
+            if (!list.contains(number[i])) {
                 list.add(number[i]);
             }
         }
@@ -62,42 +62,42 @@ public class test {
             nums[i] = list.get(i);
         }
 
-        for(int i = 0;i<nums.length;i++){
-            heapInsert(nums,i);
+        for (int i = 0; i < nums.length; i++) {
+            heapInsert(nums, i);
         }
         int size = nums.length;
-        swap(nums,0,--size);
-        while(size > 0){
-            heapify(nums,0,size);
-            swap(nums,0,--size);
+        swap(nums, 0, --size);
+        while (size > 0) {
+            heapify(nums, 0, size);
+            swap(nums, 0, --size);
         }
         return nums;
 
 
     }
 
-    public void heapInsert(int[] nums,int index){
-        while(nums[index] > nums[(index - 1) / 2]){
-            swap(nums,index,(index-1)/2);
+    public void heapInsert(int[] nums, int index) {
+        while (nums[index] > nums[(index - 1) / 2]) {
+            swap(nums, index, (index - 1) / 2);
             index = (index - 1) / 2;
         }
     }
 
-    public void heapify(int[] nums,int index,int size){
+    public void heapify(int[] nums, int index, int size) {
         int left = 2 * index + 1;
-        while(left < size){
+        while (left < size) {
             int largest = left + 1 < size && nums[left] < nums[left + 1] ? left + 1 : left;
             largest = nums[index] > nums[largest] ? index : largest;
-            if(largest == index){
+            if (largest == index) {
                 break;
             }
-            swap(nums,index,largest);
+            swap(nums, index, largest);
             index = largest;
             left = index * 2 + 1;
         }
     }
 
-    public void swap(int[] nums,int i,int j){
+    public void swap(int[] nums, int i, int j) {
         int tmp = nums[i];
         nums[i] = nums[j];
         nums[j] = tmp;

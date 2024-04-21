@@ -1,9 +1,8 @@
 package com.learn.thread;
 
 public class Visibility {
-    public static int a = 0,b = 0;
-    public static int x = 0,y = 0;
-
+    public static int a = 0, b = 0;
+    public static int x = 0, y = 0;
 
 
     public static void main(String[] args) throws InterruptedException {

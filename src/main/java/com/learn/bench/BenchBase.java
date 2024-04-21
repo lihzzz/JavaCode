@@ -11,30 +11,30 @@ public abstract class BenchBase {
     protected LongAdder successCount = new LongAdder();
     protected LongAdder failCount = new LongAdder();
 
-    public BenchBase(int threadCount,long time){
+    public BenchBase(int threadCount, long time) {
         this.threadCount = threadCount;
         this.time = time;
     }
 
-    public void init() throws Exception{
+    public void init() throws Exception {
 
     }
 
-    public void shutdown() throws Exception{
+    public void shutdown() throws Exception {
 
     }
 
-    public void start() throws Exception{
+    public void start() throws Exception {
         init();
         threads = new Thread[threadCount];
         for (int i = 0; i < threadCount; i++) {
             int threadIndex = i;
-            threads[i] = new Thread(()-> run(threadIndex));
+            threads[i] = new Thread(() -> run(threadIndex));
             threads[i].start();
         }
         Thread.sleep(time);
         stop = true;
-        for(Thread t : threads){
+        for (Thread t : threads) {
             t.join();
         }
 
@@ -48,14 +48,13 @@ public abstract class BenchBase {
         System.out.println("fail count:" + count + ", ops=" + new DecimalFormat(",###").format(ops));
     }
 
-    public void run(int threadIndex){
-        while(!stop){
+    public void run(int threadIndex) {
+        while (!stop) {
             test(threadIndex);
         }
     }
 
     public abstract void test(int threadIndex);
-
 
 
 }

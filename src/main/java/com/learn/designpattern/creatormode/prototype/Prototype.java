@@ -4,7 +4,7 @@ package com.learn.designpattern.creatormode.prototype;
  * @author lh
  * Created on 2020/11/12
  */
-public  class Prototype {
+public class Prototype {
     private int id;
     private String name;
 

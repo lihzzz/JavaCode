@@ -48,6 +48,7 @@ public class OperationFactory {
 
     /**
      * 简单工厂创建方式2
+     *
      * @param operate
      * @return
      */

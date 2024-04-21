@@ -1,6 +1,6 @@
 package com.learn.designpattern.Adapter;
 
-public class VlcMediaPlay implements AdvanceMediaPlay{
+public class VlcMediaPlay implements AdvanceMediaPlay {
     @Override
     public void playVlc() {
         System.out.println("play vlc");

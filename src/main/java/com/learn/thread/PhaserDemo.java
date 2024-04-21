@@ -19,13 +19,13 @@ public class PhaserDemo {
         // ʮ��ѡ��
         for (int index = 0; index < 10; index++) {
             phaser.register();
-            new Thread(new player(phaser),"player"+index).start();
+            new Thread(new player(phaser), "player" + index).start();
         }
         System.out.println("Game Start");
         //ע����ǰ�߳�,������ʼ
 //        phaser.arriveAndDeregister();
         //�Ƿ����ֹ̬һֱ�ȴ�
-        while(!phaser.isTerminated()){
+        while (!phaser.isTerminated()) {
         }
         System.out.println("Game Over");
 //        for(int i = 0; i < parties; i++) {
@@ -40,13 +40,14 @@ public class PhaserDemo {
 //        }
     }
 
-    static class player implements Runnable{
+    static class player implements Runnable {
 
-        private  final Phaser phaser ;
+        private final Phaser phaser;
 
-        player(Phaser phaser){
-            this.phaser=phaser;
+        player(Phaser phaser) {
+            this.phaser = phaser;
         }
+
         @Override
         public void run() {
             try {

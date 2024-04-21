@@ -4,12 +4,14 @@ package com.learn.designpattern.proxy;
  * @author lh
  * Created on 2020/11/10
  */
-public class Pursuit extends GiveGift{
+public class Pursuit extends GiveGift {
 
     private SchoolGirl schoolGirl;
-    public Pursuit(SchoolGirl schoolGirl){
+
+    public Pursuit(SchoolGirl schoolGirl) {
         this.schoolGirl = schoolGirl;
     }
+
     @Override
     public void giveGiftOne() {
         System.out.println(this.schoolGirl.name + " giveGiftOne");

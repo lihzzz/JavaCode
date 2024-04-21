@@ -9,7 +9,7 @@ public class CyclicBarrierDemo {
         CyclicBarrier cyclicBarrier = new CyclicBarrier(threadCount);
 
         for (int i = 0; i < threadCount; i++) {
-            Thread thread = new Thread(()->{
+            Thread thread = new Thread(() -> {
                 try {
                     System.out.println(Thread.currentThread().getName() + " start");
                     cyclicBarrier.await();
@@ -23,7 +23,7 @@ public class CyclicBarrierDemo {
                     e.printStackTrace();
                 }
 
-            },"thread: "+i);
+            }, "thread: " + i);
             thread.start();
         }
     }

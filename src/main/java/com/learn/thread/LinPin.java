@@ -14,11 +14,11 @@ public class LinPin {
 
     public void start(String[] args) {
         for (int i = 0; i < 10; i++) {
-            new Thread(()->{
+            new Thread(() -> {
                 int count = 0;
-                while(true){
+                while (true) {
                     reentrantLock.lock();
-                    if(LipinCount < 0){
+                    if (LipinCount < 0) {
                         try {
                             consumerCondition.await();
                             producerCondition.signalAll();
@@ -29,7 +29,7 @@ public class LinPin {
                     LipinCount--;
                     count++;
                     reentrantLock.unlock();
-                    if(count >= maxCount){
+                    if (count >= maxCount) {
                         break;
                     }
                 }
@@ -37,12 +37,12 @@ public class LinPin {
         }
     }
 
-    public void producer(){
+    public void producer() {
         // 生产物品
-        new Thread(()->{
-            while(true){
+        new Thread(() -> {
+            while (true) {
                 reentrantLock.lock();
-                if(LipinCount == MAX_COUNT){
+                if (LipinCount == MAX_COUNT) {
                     try {
                         producerCondition.await();
                         consumerCondition.signalAll();

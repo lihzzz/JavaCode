@@ -5,9 +5,10 @@ package com.learn.designpattern.proxy;
  * @author lh
  * Created on 2020/11/10
  */
-public class GiftProxy extends GiveGift{
+public class GiftProxy extends GiveGift {
     private Pursuit pursuit;
-    public GiftProxy(SchoolGirl schoolGirl){
+
+    public GiftProxy(SchoolGirl schoolGirl) {
         this.pursuit = new Pursuit(schoolGirl);
     }
 

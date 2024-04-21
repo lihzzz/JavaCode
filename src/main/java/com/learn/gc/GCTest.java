@@ -29,24 +29,24 @@ public class GCTest {
     public static byte[] genClass() throws CannotCompileException, IOException {
         ClassPool pool = ClassPool.getDefault();
         CtClass ctClass = ClassPool.getDefault().getOrNull("test1");
-        if(ctClass!=null){
+        if (ctClass != null) {
             ctClass.defrost();
         }
         ctClass = pool.makeClass("test1");
-        CtMethod ctMethod = new CtMethod(CtClass.voidType,"func",new CtClass[]{},ctClass);
+        CtMethod ctMethod = new CtMethod(CtClass.voidType, "func", new CtClass[]{}, ctClass);
         ctMethod.setModifiers(Modifier.PUBLIC);
         ctMethod.setBody("{System.out.println(\"testttt\");}");
         ctClass.addMethod(ctMethod);
         return ctClass.toBytecode();
     }
 
-    static class binLoader extends ClassLoader{
+    static class binLoader extends ClassLoader {
         @Override
         protected Class<?> findClass(String name) throws ClassNotFoundException {
-            if(name.equals("test1")){
+            if (name.equals("test1")) {
                 try {
                     byte[] v = genClass();
-                    return defineClass("test1",genClass(),0,v.length);
+                    return defineClass("test1", genClass(), 0, v.length);
                 } catch (CannotCompileException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -56,7 +56,6 @@ public class GCTest {
             return super.findClass(name);
         }
     }
-
 
 
 }

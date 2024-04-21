@@ -10,7 +10,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.BiConsumer;
 
-public class BIOBechmark extends BenchBase{
+public class BIOBechmark extends BenchBase {
 
     private ServerSocket serverSocket;
     private Socket socketForServer;
@@ -19,7 +19,7 @@ public class BIOBechmark extends BenchBase{
     private Thread clientReadThread;
     private DataOutputStream serverOutputStream;
     private DataOutputStream clientOutputStream;
-    private ConcurrentHashMap<Long, BiConsumer<Long,String>> requestCallBack = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<Long, BiConsumer<Long, String>> requestCallBack = new ConcurrentHashMap<>();
     private ExecutorService serverExecutor = Executors.newFixedThreadPool(100);
     private long requestId;
 
@@ -31,7 +31,7 @@ public class BIOBechmark extends BenchBase{
     public void init() throws Exception {
         int port = 23456;
         serverSocket = new ServerSocket(port);
-        new Thread(() ->{
+        new Thread(() -> {
             try {
                 socketForServer = serverSocket.accept();
                 serverOutputStream = new DataOutputStream(socketForServer.getOutputStream());
@@ -41,7 +41,7 @@ public class BIOBechmark extends BenchBase{
                 e.printStackTrace();
             }
         }).start();
-        socketForClient = new Socket("127.0.0.1",port);
+        socketForClient = new Socket("127.0.0.1", port);
         clientOutputStream = new DataOutputStream(socketForClient.getOutputStream());
         clientReadThread = new Thread(this::clientReadLoop);
         clientReadThread.start();
@@ -49,10 +49,10 @@ public class BIOBechmark extends BenchBase{
 
     @Override
     public void test(int threadIndex) {
-        synchronized (clientOutputStream){
+        synchronized (clientOutputStream) {
             requestId++;
-            requestCallBack.put(requestId,(header,body)->{
-                if(!stop){
+            requestCallBack.put(requestId, (header, body) -> {
+                if (!stop) {
                     successCount.add(1);
                 }
             });
@@ -67,15 +67,15 @@ public class BIOBechmark extends BenchBase{
     }
 
 
-    private void serverReadLoop(){
+    private void serverReadLoop() {
         try {
             DataInputStream dis = new DataInputStream(socketForServer.getInputStream());
-            while(!stop){
+            while (!stop) {
                 long header = dis.readLong();
                 String body = dis.readUTF();
-                serverExecutor.submit(()->{
+                serverExecutor.submit(() -> {
                     try {
-                        serverWrite(header,body);
+                        serverWrite(header, body);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -87,15 +87,15 @@ public class BIOBechmark extends BenchBase{
         System.out.println("server read thread exit");
     }
 
-    private void clientReadLoop(){
+    private void clientReadLoop() {
         try {
             DataInputStream dis = new DataInputStream(socketForClient.getInputStream());
-            while (!stop){
+            while (!stop) {
                 long header = dis.readLong();
                 String body = dis.readUTF();
-                BiConsumer<Long,String> callback = requestCallBack.remove(header);
-                if(callback != null){
-                    callback.accept(header,body);
+                BiConsumer<Long, String> callback = requestCallBack.remove(header);
+                if (callback != null) {
+                    callback.accept(header, body);
                 }
             }
         } catch (IOException e) {
@@ -104,8 +104,8 @@ public class BIOBechmark extends BenchBase{
         System.out.println("client read thread exit");
     }
 
-    private void serverWrite(long header,String body) throws IOException {
-        synchronized (serverOutputStream){
+    private void serverWrite(long header, String body) throws IOException {
+        synchronized (serverOutputStream) {
             serverOutputStream.writeLong(header);
             serverOutputStream.writeUTF(body);
             serverOutputStream.flush();
@@ -113,6 +113,6 @@ public class BIOBechmark extends BenchBase{
     }
 
     public static void main(String[] args) throws Exception {
-        new BIOBechmark(64,10000).start();
+        new BIOBechmark(64, 10000).start();
     }
 }

@@ -1,6 +1,6 @@
 package com.learn.designpattern.template;
 
-public class TestPaperB extends TestPaper{
+public class TestPaperB extends TestPaper {
     @Override
     public String Answer1() {
         return "c";

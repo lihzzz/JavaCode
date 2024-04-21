@@ -10,7 +10,7 @@ public class WaitLock {
 
         ReentrantLock lock = new ReentrantLock();
         Condition condition = lock.newCondition();
-        Thread thread1 = new Thread(()->{
+        Thread thread1 = new Thread(() -> {
             System.out.println("before wait1 ...");
 
             try {
@@ -18,7 +18,7 @@ public class WaitLock {
                 condition.await();
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }finally {
+            } finally {
                 lock.unlock();
             }
 //            synchronized (obj){
@@ -31,14 +31,14 @@ public class WaitLock {
             System.out.println("after wait1 ...");
         });
 
-        Thread thread2 = new Thread(()->{
+        Thread thread2 = new Thread(() -> {
             System.out.println("before wait2 ...");
             try {
                 lock.lock();
                 condition.await();
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }finally {
+            } finally {
                 lock.unlock();
             }
             System.out.println("after wait2 ...");

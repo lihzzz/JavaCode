@@ -6,14 +6,14 @@ package com.learn.tmp;
 public class Singleton {
     public static volatile Singleton singleton;
 
-    private Singleton(){
+    private Singleton() {
 
     }
 
-    public static Singleton getInstance(){
-        if(singleton == null){
-            synchronized (Singleton.class){
-                if(singleton == null){
+    public static Singleton getInstance() {
+        if (singleton == null) {
+            synchronized (Singleton.class) {
+                if (singleton == null) {
                     singleton = new Singleton();
                 }
             }

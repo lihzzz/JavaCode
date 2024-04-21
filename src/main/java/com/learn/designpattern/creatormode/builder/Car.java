@@ -17,12 +17,12 @@ public class Car {
 
 
     // 封装建造的具体细节
-    public Car(CarBuilder carBuilder){
-        if(carBuilder.getType().equals("小")){
+    public Car(CarBuilder carBuilder) {
+        if (carBuilder.getType().equals("小")) {
             this.size = "xiao";
-        }else if(carBuilder.getType().equals("中")){
+        } else if (carBuilder.getType().equals("中")) {
             this.size = "zhong";
-        }else{
+        } else {
             this.size = "da";
         }
 

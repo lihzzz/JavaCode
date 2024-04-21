@@ -174,7 +174,7 @@ public class Solution {
         int maxValue = 0;
         int curNumber = prices[0];
         for (int i = 2; i < n; i++) {
-            if(prices[i] > curNumber){
+            if (prices[i] > curNumber) {
                 maxValue += prices[i] - curNumber;
                 curNumber = prices[i];
             }
@@ -185,6 +185,7 @@ public class Solution {
     /**
      * 123. 买卖股票的最佳时机 III
      * https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iii/
+     *
      * @param prices
      * @return
      */
@@ -198,7 +199,7 @@ public class Solution {
         // 第一个参数：第i天
         // 第二个参数: 交易次数
         // 第三个参数: 是否持有股票
-        int[][][] dp = new int[n][tradeCount+1][2];
+        int[][][] dp = new int[n][tradeCount + 1][2];
 
         // 初始化第0天数据
         for (int i = 0; i < 3; i++) {
@@ -210,17 +211,17 @@ public class Solution {
         for (int i = 1; i < n; i++) {
             for (int j = 0; j <= tradeCount; j++) {
                 // 第i天过后手上没有股票
-                if(j == 0){
-                    dp[i][j][0] = dp[i-1][j][0];
-                }else{
-                    dp[i][j][0] = Math.max(dp[i-1][j][0],dp[i-1][j-1][1] + prices[i]);
+                if (j == 0) {
+                    dp[i][j][0] = dp[i - 1][j][0];
+                } else {
+                    dp[i][j][0] = Math.max(dp[i - 1][j][0], dp[i - 1][j - 1][1] + prices[i]);
                 }
-                dp[i][j][1] = Math.max(dp[i-1][j][1],dp[i-1][j][0] - prices[i]);
+                dp[i][j][1] = Math.max(dp[i - 1][j][1], dp[i - 1][j][0] - prices[i]);
             }
         }
 
-        int maxValue = Math.max(dp[n-1][0][0],dp[n-1][1][0]);
-        return Math.max(maxValue,dp[n-1][2][0]);
+        int maxValue = Math.max(dp[n - 1][0][0], dp[n - 1][1][0]);
+        return Math.max(maxValue, dp[n - 1][2][0]);
 
 
         // 递归
@@ -231,30 +232,32 @@ public class Solution {
 
     /**
      * 递归
+     *
      * @param prices
      * @param i
      * @param hasStock 手上是否有股票
-     * @param count 完整交易次数
+     * @param count    完整交易次数
      * @return
      */
-    private int maxProfit3Helper(int[] prices,int i,int hasStock,int count){
-        if(i >= prices.length || (count >= 2) && (hasStock < 1)){
+    private int maxProfit3Helper(int[] prices, int i, int hasStock, int count) {
+        if (i >= prices.length || (count >= 2) && (hasStock < 1)) {
             // 遍历结束 || 交易次数大于2并且手中没有股票
             return 0;
         }
         // 对于每一天，可以选择卖出股票 也可以选择买入股票
-        if(hasStock >= 1){
+        if (hasStock >= 1) {
             // 手中有股票可以选择卖或者不卖
-            return Math.max(prices[i] + maxProfit3Helper(prices,i+1,0,count),maxProfit3Helper(prices,i+1,1,count));
+            return Math.max(prices[i] + maxProfit3Helper(prices, i + 1, 0, count), maxProfit3Helper(prices, i + 1, 1, count));
         }
         // 买或者不买
-        return Math.max(-prices[i] + maxProfit3Helper(prices,i+1,1,count+1),maxProfit3Helper(prices,i+1,0,count));
+        return Math.max(-prices[i] + maxProfit3Helper(prices, i + 1, 1, count + 1), maxProfit3Helper(prices, i + 1, 0, count));
     }
 
 
     /**
      * 55. 跳跃游戏
      * https://leetcode.cn/problems/jump-game/
+     *
      * @param nums
      * @return
      */
@@ -262,12 +265,12 @@ public class Solution {
         int n = nums.length;
         int maxLocation = 0;
         for (int i = 0; i < n; i++) {
-            if(i > maxLocation){
+            if (i > maxLocation) {
                 // 当前位置不可达，不需要继续遍历下去
                 break;
             }
-            maxLocation = Math.max(maxLocation,i + nums[i]);
-            if(maxLocation >= n-1){
+            maxLocation = Math.max(maxLocation, i + nums[i]);
+            if (maxLocation >= n - 1) {
                 return true;
             }
         }

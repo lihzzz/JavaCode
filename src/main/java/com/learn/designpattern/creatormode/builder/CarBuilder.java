@@ -15,22 +15,22 @@ public class CarBuilder {
     // 舒适度
     private String comfort;
 
-    public CarBuilder type(String type){
+    public CarBuilder type(String type) {
         this.type = type;
         return this;
     }
 
-    public CarBuilder power(String power){
+    public CarBuilder power(String power) {
         this.power = power;
         return this;
     }
 
-    public CarBuilder comfort(String comfort){
+    public CarBuilder comfort(String comfort) {
         this.comfort = comfort;
         return this;
     }
 
-    public Car build(){
+    public Car build() {
         return new Car(this);
     }
 }

@@ -10,14 +10,14 @@ import java.util.concurrent.TimeUnit;
 public class ThreadPoolTest {
     public static void main(String[] args) throws InterruptedException {
         ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(5, 10, 0L, TimeUnit.MILLISECONDS,
-                new LinkedBlockingQueue<Runnable>(10),new ThreadPoolExecutor.DiscardPolicy());
+                new LinkedBlockingQueue<Runnable>(10), new ThreadPoolExecutor.DiscardPolicy());
         for (int i = 0; i < 30; i++) {
-            threadPoolExecutor.execute(()->{
+            threadPoolExecutor.execute(() -> {
                 Random random = new Random(System.currentTimeMillis());
-                long time = random.nextInt(1000) ;
+                long time = random.nextInt(1000);
                 long start = System.currentTimeMillis();
-                while (true){
-                    if(System.currentTimeMillis() - start >= time){
+                while (true) {
+                    if (System.currentTimeMillis() - start >= time) {
                         break;
                     }
                 }
@@ -44,12 +44,12 @@ public class ThreadPoolTest {
     }
 
     @Test
-    public void testRandom(){
-        Runtime.getRuntime().addShutdownHook(new Thread(()->{
+    public void testRandom() {
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             System.out.println("我要推出了");
         }));
 
-        while (true){
+        while (true) {
 
         }
     }

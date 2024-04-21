@@ -5,11 +5,12 @@ import java.util.List;
 
 /**
  * xml配置文件解析类
+ *
  * @author lihzz
  * @version 1.0
  * @date 2022/9/26 23:44
  */
-public class XmlBeanConfigParser implements BeanConfigParser{
+public class XmlBeanConfigParser implements BeanConfigParser {
     @Override
     public List parse(InputStream inputStream) {
         return null;

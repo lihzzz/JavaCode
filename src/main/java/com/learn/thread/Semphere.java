@@ -4,7 +4,7 @@ import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 
 public class Semphere extends AbstractQueuedSynchronizer {
 
-    public Semphere(int state){
+    public Semphere(int state) {
         setState(state);
     }
 
@@ -12,11 +12,11 @@ public class Semphere extends AbstractQueuedSynchronizer {
     @Override
     protected int tryAcquireShared(int arg) {
         int available = getState();
-        if(available == 0){
+        if (available == 0) {
             return -1;
         }
         int left = available - 1;
-        if(compareAndSetState(available,left)){
+        if (compareAndSetState(available, left)) {
             return left;
         }
         return -1;
@@ -25,14 +25,14 @@ public class Semphere extends AbstractQueuedSynchronizer {
     @Override
     protected boolean tryReleaseShared(int arg) {
         int available = getState();
-        return compareAndSetState(available,available+1);
+        return compareAndSetState(available, available + 1);
     }
 
     public static void main(String[] args) {
         Semphere semphere = new Semphere(4);
 
         for (int i = 0; i < 1000; i++) {
-            new Thread(()->{
+            new Thread(() -> {
                 semphere.acquireShared(0);
                 System.out.println("go");
                 try {

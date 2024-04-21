@@ -3,19 +3,21 @@ package com.learn.thread;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class DiningPhilosophersSample implements Runnable{
+public class DiningPhilosophersSample implements Runnable {
 
     int forks[] = new int[5];
     Phi[] phis = new Phi[5];
     ReentrantLock lock = new ReentrantLock();
     Condition condition = lock.newCondition();
     boolean[] dirty = new boolean[5];
-    public DiningPhilosophersSample(){
+
+    public DiningPhilosophersSample() {
         for (int i = 0; i < 5; i++) {
-            phis[i] = new Phi(i+1);
+            phis[i] = new Phi(i + 1);
         }
     }
-    class Phi extends Philosopher{
+
+    class Phi extends Philosopher {
 
         public Phi(int id) {
             super(id);
@@ -23,7 +25,7 @@ public class DiningPhilosophersSample implements Runnable{
 
         @Override
         public void run() {
-            while (true){
+            while (true) {
                 try {
                     this.thinking();
                     lock.lockInterruptibly();
@@ -38,22 +40,22 @@ public class DiningPhilosophersSample implements Runnable{
 //                        condition.await();
 //                    }
                     boolean takeLeft = this.checkLeft(forks);
-                    if(!takeLeft){
+                    if (!takeLeft) {
                         lock.unlock();
                         continue;
                     }
                     this.takeLeft(forks);
                     boolean takeRight = this.checkRight(forks);
-                    if(takeRight){
+                    if (takeRight) {
                         this.takeRight(forks);
-                    }else{
+                    } else {
                         int rid = this.right();
                         Phi phi = phis[forks[rid] - 1];
-                        if(dirty[rid] == true && phi.getState() != "eating"){
+                        if (dirty[rid] == true && phi.getState() != "eating") {
                             forks[rid] = this.id;
                             this.takeRight(forks);
                             dirty[rid] = false;
-                        }else{
+                        } else {
                             lock.unlock();
                             continue;
                         }

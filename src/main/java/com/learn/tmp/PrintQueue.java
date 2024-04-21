@@ -6,7 +6,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class PrintQueue {
     private final Lock lock = new ReentrantLock();
 
-    public void printJob(Object document){
+    public void printJob(Object document) {
         lock.lock();
 
         try {
@@ -16,7 +16,7 @@ public class PrintQueue {
             Thread.sleep(duration);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             lock.unlock();
         }
 //        lock.lock();
@@ -37,7 +37,7 @@ public class PrintQueue {
 
         Thread[] threads = new Thread[10];
         for (int i = 0; i < 10; i++) {
-            threads[i] = new Thread(new Job(printQueue),"Thread-" + i);
+            threads[i] = new Thread(new Job(printQueue), "Thread-" + i);
         }
 
         for (int i = 0; i < 10; i++) {

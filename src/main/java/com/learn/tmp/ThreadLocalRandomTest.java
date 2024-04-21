@@ -10,6 +10,7 @@ import java.util.concurrent.*;
 public class ThreadLocalRandomTest {
 
     public final static int N = 100000;
+
     @Test
     public void testRandom() throws InterruptedException {
         ExecutorService executorService = Executors.newWorkStealingPool();
@@ -18,7 +19,7 @@ public class ThreadLocalRandomTest {
         Random random = new Random();
         long start = System.currentTimeMillis();
         for (int i = 0; i < ThreadLocalRandomTest.N; i++) {
-            callables.add(()->{
+            callables.add(() -> {
                 return ThreadLocalRandom.current().nextInt();
             });
         }

@@ -4,7 +4,7 @@ package com.learn.designpattern.creatormode.factory.simple.cal;
  * @author lh
  * Created on 2020/11/7
  */
-public class OperationAdd extends Operation{
+public class OperationAdd extends Operation {
 
     @Override
     public double GetResult() {

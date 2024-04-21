@@ -1,11 +1,11 @@
 package com.learn.designpattern.creatormode.factory.simple.cash;
 
-public class CashReturn extends Cash{
+public class CashReturn extends Cash {
 
     public int condition;
     public int returnMoney;
 
-    public CashReturn(int condition,int returnMoney){
+    public CashReturn(int condition, int returnMoney) {
         this.condition = condition;
         this.returnMoney = returnMoney;
     }

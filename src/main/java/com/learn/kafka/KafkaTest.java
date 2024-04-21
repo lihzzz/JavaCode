@@ -23,7 +23,7 @@ public class KafkaTest {
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         List<String> list = new ArrayList<>();
         list.add(AvgLatencyProducerInterceptor.class.getCanonicalName());
-        props.put(ProducerConfig.INTERCEPTOR_CLASSES_CONFIG,list);
+        props.put(ProducerConfig.INTERCEPTOR_CLASSES_CONFIG, list);
         //props.put(ProducerConfig.PARTITIONER_CLASS_CONFIG, CustomPartitioner.class.getName());
         return new KafkaProducer<>(props);
     }
@@ -44,15 +44,15 @@ public class KafkaTest {
     }
 
     public static void producerTest() {
-        Producer<Long,String> producer = KafkaTest.createProducer();
+        Producer<Long, String> producer = KafkaTest.createProducer();
 
         for (int i = 0; i < IKafkaConstants.MESSAGE_COUNT; i++) {
-            ProducerRecord producerRecord = new ProducerRecord<Long,String>(IKafkaConstants.TOPIC_NAME,"This is Record " + i );
+            ProducerRecord producerRecord = new ProducerRecord<Long, String>(IKafkaConstants.TOPIC_NAME, "This is Record " + i);
             try {
                 RecordMetadata metadata = (RecordMetadata) producer.send(producerRecord).get();
                 System.out.println("Record sent with key " + i + " to partition " + metadata.partition()
                         + " with offset " + metadata.offset());
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error in sending record");
                 System.out.println(e);
             }
@@ -60,11 +60,11 @@ public class KafkaTest {
     }
 
 
-    public static void runConsumer(){
+    public static void runConsumer() {
         Consumer<Long, String> consumer = KafkaTest.createConsumer();
         int noMessageFound = 0;
-        while (true){
-            ConsumerRecords<Long,String> consumerRecord = consumer.poll(Duration.ofMillis(1000));
+        while (true) {
+            ConsumerRecords<Long, String> consumerRecord = consumer.poll(Duration.ofMillis(1000));
             if (consumerRecord.count() == 0) {
                 noMessageFound++;
                 if (noMessageFound > IKafkaConstants.MAX_NO_MESSAGE_FOUND_COUNT)
@@ -82,11 +82,11 @@ public class KafkaTest {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        Thread t1 = new Thread(()->{
+        Thread t1 = new Thread(() -> {
             producerTest();
         });
 
-        Thread t2 = new Thread(()->{
+        Thread t2 = new Thread(() -> {
             runConsumer();
         });
 
